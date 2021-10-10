@@ -6,9 +6,9 @@
  * This comment wont be removed in bundled code
  */
 
-import { log, clear } from './dev';
+import { log, clear } from "./dev";
 
-import { lexer } from './lexer';
+import { lexer } from "./lexer";
 
 /**
  * For HMR (Hot Module Replacement) only
@@ -18,8 +18,10 @@ if (module.hot) {
   clear();
 }
 
-log('Initializing Raj Compiler \n');
+log("Initializing Raj Compiler \n");
 
-log(lexer(`fn main() {
+log(
+  lexer(`fn main() {
   let alpha = 1;
-}`));
+}`)
+);
