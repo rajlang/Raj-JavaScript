@@ -5,6 +5,7 @@ dist/*.html
 _test/
 node_modules/
 *.log
+.eslintcache
 
 # OS generated files
 .DS_Store

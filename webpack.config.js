@@ -31,7 +31,13 @@ const config = (env, argv) => ({
     rules: [
       {
         test: /\.js$/,
-        use: "babel-loader",
+        use: {
+          loader: "babel-loader",
+          options: {
+            cacheCompression: false,
+            cacheDirectory: true,
+          },
+        },
         exclude: /node_modules/,
       },
     ],
@@ -59,6 +65,9 @@ const config = (env, argv) => ({
     compress: true,
     hot: true,
     // open: true,
+  },
+  cache: {
+    type: "filesystem",
   },
 });
 
