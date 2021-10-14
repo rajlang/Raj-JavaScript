@@ -1,5 +1,5 @@
 import { tokens, ids } from "./tokens";
-import { error } from "./dev";
+import { error } from "../dev";
 
 export function lexer(code) {
   const input = String(code).trim();
@@ -14,6 +14,7 @@ export function lexer(code) {
 
   function push(value, name) {
     let type = name;
+
     if (type === undefined) {
       if (availKeyWords.includes(value)) {
         type = tokens[value];
@@ -29,6 +30,7 @@ export function lexer(code) {
         error(`Unexpected Token: "${value}"`);
       }
     }
+
     output.push({
       value,
       type,

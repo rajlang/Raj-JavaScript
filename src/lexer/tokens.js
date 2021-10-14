@@ -31,14 +31,16 @@ export const tokens = {
   " ": "Space",
   "\n": "NewLine",
   ";": "SemiColon",
+  ",": "Comma",
 };
 
 export const ids = {
   name: /[a-zA-Z_$][\w$]*/,
 
-  int: /\d*/,
+  int: /\d+/,
   float: /\d*\.\d*/,
   boolean: /(true|false)/,
+  string: /".+"/,
 
   space: /\s/,
 

@@ -8,7 +8,11 @@
 
 import { log, clear } from "./dev";
 
-import { lexer } from "./lexer";
+import { lexer } from "./lexer/lexer";
+
+// import { parser } from "./parser/parser";
+
+// import { sanitize } from "./parser/sanitize";
 
 /**
  * For HMR (Hot Module Replacement) only
@@ -20,8 +24,21 @@ if (module.hot) {
 
 log("Initializing Raj Compiler \n");
 
-log(
-  lexer(`fn main() {
+const code = `fn main() {
   let alpha = 1;
-}`)
-);
+  fn raj() {
+    const beta = 2;
+  }
+}`;
+
+const lexemes = lexer(code);
+
+// const ACT = parser(lexemes);
+
+log("\n\n");
+log(code);
+log("\n\n");
+log(lexemes);
+log("\n\n");
+// log(ACT);
+// sanitize(lexemes);
