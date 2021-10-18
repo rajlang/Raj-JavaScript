@@ -6,14 +6,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Testing For Modern JS Boilerplate</title>
     <script src="./dist/index.js"></script>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        font-family: sans-serif;
+      }
+
+      div {
+        display: grid;
+        grid-template-columns: 50vw 1fr 1fr;
+        gap: 1rem;
+        place-content: center;
+        overflow: hidden;
+      }
+
+      textarea {
+        outline: none;
+        height: calc(100vh - 4rem);
+        padding: 1rem;
+        margin: 1rem;
+      }
+
+      button {
+        outline: 0;
+        border: 0;
+        margin: 0.5rem;
+        padding: 0.5rem;
+        background-color: aqua;
+        border-radius: 50%;
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: calc(50vw - 1.75rem);
+      }
+    </style>
   </head>
 
-  <body style="text-align: center; font-family: sans-serif">
-    <h1></h1>
+  <body>
+    <button onmousedown="job()">Run</button>
+
+    <div>
+      <textarea name="input" id="input" cols="30" rows="10" spellcheck="false">
+fn{()fn{()}()}</textarea
+      >
+      <textarea
+        name="lexer output"
+        id="lexer"
+        cols="30"
+        rows="10"
+        readonly
+        spellcheck="false"
+      ></textarea>
+      <textarea
+        name="sanitize output"
+        id="sanitize"
+        cols="30"
+        rows="10"
+        spellcheck="false"
+      ></textarea>
+      <!-- <textarea name="parser output" id="parser" cols="30" rows="10" readonly></textarea> -->
+    </div>
+
     <script>
-      document.body.getElementsByTagName("h1")[0].textContent = document.title;
+      function job() {
+        let lexer = lex(document.querySelector("#input").value);
+        document.querySelector("#lexer").textContent = JSON.stringify(
+          lexer,
+          "",
+          "  "
+        );
+        document.querySelector("#sanitize").textContent = JSON.stringify(
+          san(lexer),
+          "",
+          "  "
+        );
+      }
     </script>
-    <!-- This can be un commented if it is necessary to load the script at last
-  <script src="./dist/index.js"></script> -->
   </body>
 </html>
