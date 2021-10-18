@@ -10,16 +10,14 @@ import { log, clear } from "./dev";
 
 import { lexer } from "./lexer/lexer";
 
-// import { parser } from "./parser/parser";
-
-// import { sanitize } from "./parser/sanitize";
+import { parser } from "./parser/parser";
 
 /**
  * For HMR (Hot Module Replacement) only
  */
 if (module.hot) {
-  module.hot.accept();
   clear();
+  module.hot.accept();
 }
 
 log("Initializing Raj Compiler \n");
@@ -33,12 +31,11 @@ const code = `fn main() {
 
 const lexemes = lexer(code);
 
-// const ACT = parser(lexemes);
+const AST = parser(lexemes);
 
-log("\n\n");
-log(code);
-log("\n\n");
-log(lexemes);
-log("\n\n");
-// log(ACT);
-// sanitize(lexemes);
+log("\n");
+log("code:", code);
+log("\n");
+log("lexemes:", lexemes);
+log("\n");
+log("AST:", AST);
