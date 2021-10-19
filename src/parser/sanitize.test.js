@@ -26,7 +26,6 @@ describe("sanitize.sanitize", () => {
       { value: "=", type: "Equals", position: { line: 1, column: 22 } },
       { value: " ", type: "Space", position: { line: 1, column: 23 } },
       { value: "2", type: "Integer", position: { line: 1, column: 24 } },
-      { value: ";", type: "SemiColon", position: { line: 1, column: 25 } },
     ];
     const object2 = [
       { value: "fn", type: "Function", position: { line: 1, column: 1 } },
@@ -57,7 +56,6 @@ describe("sanitize.sanitize", () => {
       { value: "=", type: "Equals", position: { line: 1, column: 10 } },
       { value: " ", type: "Space", position: { line: 1, column: 11 } },
       { value: "34", type: "Integer", position: { line: 1, column: 12 } },
-      { value: ";", type: "SemiColon", position: { line: 1, column: 14 } },
       { value: "", type: "EndLn", position: { line: 1, column: 15 } },
     ];
     expect(result).toEqual(object);
@@ -227,33 +225,21 @@ describe("sanitize.sanitize", () => {
     const result = sanitize.sanitize(param1);
     const object = [
       { value: "\n", type: "NewLine", position: { line: 3, column: 42 } },
-      { value: " ", type: "Space", position: { line: 4, column: 43 } },
-      { value: " ", type: "Space", position: { line: 4, column: 44 } },
-      { value: " ", type: "Space", position: { line: 4, column: 45 } },
-      { value: " ", type: "Space", position: { line: 4, column: 46 } },
       { value: "const", type: "Const", position: { line: 4, column: 47 } },
       { value: "beta", type: "Identifier", position: { line: 4, column: 53 } },
       { value: "=", type: "Equals", position: { line: 4, column: 58 } },
       { value: " ", type: "Space", position: { line: 4, column: 59 } },
       { value: "2", type: "Integer", position: { line: 4, column: 60 } },
-      { value: ";", type: "SemiColon", position: { line: 4, column: 61 } },
       { value: "\n", type: "NewLine", position: { line: 4, column: 62 } },
-      { value: " ", type: "Space", position: { line: 5, column: 63 } },
-      { value: " ", type: "Space", position: { line: 5, column: 64 } },
     ];
     const object2 = [
       { value: "\n", type: "NewLine", position: { line: 1, column: 12 } },
-      { value: " ", type: "Space", position: { line: 2, column: 13 } },
-      { value: " ", type: "Space", position: { line: 2, column: 14 } },
       { value: "let", type: "Let", position: { line: 2, column: 15 } },
       { value: "alpha", type: "Identifier", position: { line: 2, column: 19 } },
       { value: "=", type: "Equals", position: { line: 2, column: 25 } },
       { value: " ", type: "Space", position: { line: 2, column: 26 } },
       { value: "1", type: "Integer", position: { line: 2, column: 27 } },
-      { value: ";", type: "SemiColon", position: { line: 2, column: 28 } },
       { value: "\n", type: "NewLine", position: { line: 2, column: 29 } },
-      { value: " ", type: "Space", position: { line: 3, column: 30 } },
-      { value: " ", type: "Space", position: { line: 3, column: 31 } },
       { value: "fn", type: "Function", position: { line: 3, column: 32 } },
       { value: "raj", type: "Identifier", position: { line: 3, column: 35 } },
       { value: "(", type: "RPar", position: { line: 3, column: 38 } },

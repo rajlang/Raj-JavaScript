@@ -48,7 +48,35 @@
 
     <div>
       <textarea name="input" id="input" cols="30" rows="10" spellcheck="false">
-fn{()fn{()}()}</textarea
+fn raj() {
+
+  let alpha = 1;
+
+  fn main() {
+
+    const beta = 2;
+
+    fn foo() {
+      return println("Bar")
+    }
+
+    return foo();
+
+  }
+
+  let ten = "10";
+
+  println( alpha + ten )
+
+  fn entry() {
+
+    return main();
+
+  }
+
+  return entry();
+
+}</textarea
       >
       <textarea
         name="lexer output"
@@ -58,26 +86,27 @@ fn{()fn{()}()}</textarea
         readonly
         spellcheck="false"
       ></textarea>
+      <!-- <textarea name="sanitize output" id="sanitizer" cols="30" rows="10" spellcheck="false"></textarea> -->
       <textarea
-        name="sanitize output"
-        id="sanitize"
+        name="parser output"
+        id="parser"
         cols="30"
         rows="10"
+        readonly
         spellcheck="false"
       ></textarea>
-      <!-- <textarea name="parser output" id="parser" cols="30" rows="10" readonly></textarea> -->
     </div>
 
     <script>
       function job() {
-        let lexer = lex(document.querySelector("#input").value);
+        let lexemes = lex(document.querySelector("#input").value);
         document.querySelector("#lexer").textContent = JSON.stringify(
-          lexer,
+          lexemes,
           "",
           "  "
         );
-        document.querySelector("#sanitize").textContent = JSON.stringify(
-          san(lexer),
+        document.querySelector("#parser").textContent = JSON.stringify(
+          parse(lexemes),
           "",
           "  "
         );

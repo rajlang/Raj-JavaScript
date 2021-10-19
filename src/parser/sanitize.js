@@ -1,8 +1,10 @@
+import { ids } from "../lexer/tokens";
+
 export function sanitize(lexemes) {
-  const input = lexemes;
+  let input = lexemes;
   const output = [];
 
-  const len = input.length;
+  let len = input.length;
 
   let cur = 0; // cursor to track index or progress
 
@@ -10,6 +12,34 @@ export function sanitize(lexemes) {
   const value = () => input[cur].value;
 
   const push = (data, target = output) => target.push(data);
+
+  function rmSpaces() {
+    const cOutput = [];
+    const SPACE = ids.space;
+    const ignore = () =>
+      lexeme().type === undefined || value() === ";" || value() === undefined;
+
+    function sMain() {
+      while (ignore()) cur += 1;
+
+      if (SPACE.test(value())) {
+        push(lexeme(), cOutput);
+        cur += 1;
+        while (SPACE.test(value())) cur += 1;
+      }
+      push(lexeme(), cOutput);
+    }
+
+    while (cur < len) {
+      sMain();
+      cur += 1;
+    }
+
+    // updating and resetting for further processing
+    input = cOutput;
+    cur = 0;
+    len = input.length;
+  }
 
   function withinbracts() {
     const bract = [];
@@ -58,6 +88,9 @@ export function sanitize(lexemes) {
     if (cur < len) return main();
     return output;
   }
+
+  // preprocessing
+  rmSpaces();
 
   return main();
 }

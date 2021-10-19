@@ -3,7 +3,7 @@
  */
 
 /** !
- * This comment wont be removed in bundled code
+ * (C) 2021 Rajaniraiyn
  */
 
 import { log, clear } from "./dev";
@@ -39,3 +39,16 @@ log("\n");
 log("lexemes:", lexemes);
 log("\n");
 log("AST:", AST);
+
+// /**
+//  *
+//  * only for manual testing
+//  *
+//  */
+
+// try {
+//   window.lex = lexer;
+//   window.parse = parser;
+// } catch (err) {
+//   log("This is not a Browser environment");
+// }
