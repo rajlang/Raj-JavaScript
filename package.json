@@ -8,12 +8,13 @@
     "clean": "rimraf dist/* && rimraf coverage",
     "dev": "webpack-dev-server --entry ./src/main.js --output-filename ./dist/index.js --mode development",
     "build": "webpack --mode production",
+    "build:only": "webpack --mode production",
     "test": "jest --runInBand",
     "coverage": "jest --runInBand --coverage",
     "lint": "eslint --cache --fix src",
-    "prettier": "npm run lint && prettier --write .",
+    "prettier": "prettier --write .",
     "prepare": "husky install",
-    "prebuild": "npm run test && npm run clean && npm run prettier",
+    "prebuild": "npm run test && npm run clean && npm run lint && npm run prettier",
     "prepublishOnly": "npm run build"
   },
   "author": {
@@ -43,21 +44,20 @@
   "devDependencies": {
     "@babel/core": "^7.15.5",
     "@babel/preset-env": "^7.15.8",
-    "babel-jest": "^27.3.1",
     "babel-loader": "^8.2.3",
     "eslint": "^8.1.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.25.2",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-jest": "^25.2.2",
     "husky": "^7.0.4",
     "jest": "^27.3.1",
     "prettier": "^2.4.1",
     "rimraf": "^3.0.2",
     "terser-webpack-plugin": "^5.2.4",
-    "webpack": "^5.60.0",
+    "webpack": "^5.59.1",
     "webpack-bundle-analyzer": "^4.5.0",
-    "webpack-cli": "^4.8.0",
-    "webpack-dev-server": "^4.4.0"
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.3.1"
   },
   "jest": {
     "testEnvironment": "node"
