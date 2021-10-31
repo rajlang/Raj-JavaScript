@@ -1,4 +1,4 @@
-import { ids } from "../lexer/tokens";
+import { TOKEN_REGEX } from "../lexer/tokens";
 
 export function sanitize(lexemes) {
   let input = lexemes;
@@ -15,7 +15,7 @@ export function sanitize(lexemes) {
 
   function rmSpaces() {
     const cOutput = [];
-    const SPACE = ids.space;
+    const SPACE = TOKEN_REGEX.whitespace;
     const ignore = () =>
       lexeme().type === undefined || value() === ";" || value() === undefined;
 

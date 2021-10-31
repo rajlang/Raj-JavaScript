@@ -2,7 +2,7 @@ const sanitize = require("./sanitize");
 
 // @ponicode
 describe("sanitize.sanitize", () => {
-  test("0", () => {
+  it("0", () => {
     const param1 = [
       { value: "fn", type: "Function", position: { line: 1, column: 1 } },
       { value: "main", type: "Identifier", position: { line: 1, column: 4 } },
@@ -39,7 +39,7 @@ describe("sanitize.sanitize", () => {
     expect(result).toEqual(object2);
   });
 
-  test("1", () => {
+  it("1", () => {
     const param1 = [
       { value: "let", type: "Let", position: { line: 1, column: 1 } },
       { value: "beta", type: "Identifier", position: { line: 1, column: 5 } },
@@ -61,7 +61,7 @@ describe("sanitize.sanitize", () => {
     expect(result).toEqual(object);
   });
 
-  test("2", () => {
+  it("2", () => {
     const param1 = [
       { value: "if", type: "If", position: { line: 1, column: 1 } },
       { value: "(", type: "RPar", position: { line: 1, column: 4 } },
@@ -99,7 +99,7 @@ describe("sanitize.sanitize", () => {
     expect(result).toEqual(object2);
   });
 
-  test("3", () => {
+  it("3", () => {
     const param1 = [
       { value: "fn", type: "Function", position: { line: 1, column: 1 } },
       { value: "{", type: "RBrac", position: { line: 1, column: 3 } },
@@ -136,7 +136,7 @@ describe("sanitize.sanitize", () => {
     expect(result).toEqual(object3);
   });
 
-  test("4", () => {
+  it("4", () => {
     const param1 = [
       { value: "{", type: "RBrac", position: { line: 1, column: 1 } },
       { value: "{", type: "RBrac", position: { line: 1, column: 2 } },
@@ -177,7 +177,7 @@ describe("sanitize.sanitize", () => {
     expect(result).toEqual(object8);
   });
 
-  test("5", () => {
+  it("5", () => {
     const param1 = [
       { value: "fn", type: "Function", position: { line: 1, column: 1 } },
       { value: "main", type: "Identifier", position: { line: 1, column: 4 } },
