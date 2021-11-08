@@ -158,7 +158,7 @@ const TOKENS = {
  * Tokens Regex for Lexer
  */
 const TOKEN_REGEX = {
-  identifier: /^[a-zA-Z_$][a-zA-Z0-9_$]*/,
+  identifier: /^(?!\d)[_$\w\xA0-\uFFFF][_$\w\xA0-\uFFFF]*/,
   number: /^[0-9]+(\.[0-9]+)?/,
   string: /^"([^"\\]|\\.)*"/,
   string2: /^'([^'\\]|\\.)*'/,

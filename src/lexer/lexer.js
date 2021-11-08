@@ -75,10 +75,17 @@ class Lexer {
    *
    */
   pushToken(skipSetTokenType = false) {
-    if (!skipSetTokenType) {
+    const dontSkip = !skipSetTokenType;
+
+    if (dontSkip) {
       this.setTokenType();
     }
-    if (![" ", "\t", "\n", "\r", "\v", ";"].includes(this.token.value)) {
+
+    const tokenIsNotIgnorable = ![" ", "\t", "\n", "\r", "\v", ";"].includes(
+      this.token.value
+    );
+
+    if (tokenIsNotIgnorable) {
       const token = new Token(
         this.token.value,
         this.token.type,

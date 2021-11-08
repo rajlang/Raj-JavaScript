@@ -13,11 +13,14 @@ export function sanitize(lexemes) {
 
   const push = (data, target = output) => target.push(data);
 
+  const isPairStart = () => ["{", "("].includes(value());
+  const isPairEnd = () => ["}", ")"].includes(value());
+  const isPair = () => ["{", "}", "(", ")"].includes(value());
+
   function rmSpaces() {
     const cOutput = [];
     const SPACE = TOKEN_REGEX.whitespace;
-    const ignore = () =>
-      lexeme().type === undefined || value() === ";" || value() === undefined;
+    const ignore = () => lexeme().type === undefined || value() === undefined;
 
     function sMain() {
       while (ignore()) cur += 1;
@@ -41,27 +44,29 @@ export function sanitize(lexemes) {
     len = input.length;
   }
 
-  function withinbracts() {
+  function withinBracts() {
     const bract = [];
     let first = true;
 
     function bMain() {
-      if (value() === "{" && first) {
+      if (isPairStart() && first) {
         first = false;
         cur += 1;
       }
 
-      while (value() !== "{" && value() !== "}") {
+      while (!isPair()) {
         push(lexeme(), bract);
         cur += 1;
         if (cur === len) return output;
       }
 
-      if (value() === "{" && !first) {
-        push(withinbracts(), bract);
+      if (isPairStart() && !first) {
+        push(withinBracts(), bract);
+        cur += 1;
+        bMain();
       }
 
-      if (value() === "}") {
+      if (isPairEnd()) {
         return bract;
       }
 
@@ -74,16 +79,16 @@ export function sanitize(lexemes) {
   }
 
   function main() {
-    while (value() !== "{" && value() !== "}") {
+    while (!isPair()) {
       push(lexeme());
       cur += 1;
       if (cur === len) return output;
     }
 
-    if (value() === "{") {
-      push(withinbracts());
+    if (isPairStart()) {
+      push(withinBracts());
     }
-    if (value() === "}") cur += 1;
+    if (isPairEnd()) cur += 1;
 
     if (cur < len) return main();
     return output;
