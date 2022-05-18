@@ -43,7 +43,7 @@
   "homepage": "https://github.com/rajlang/Raj-JavaScript#readme",
   "devDependencies": {
     "@babel/core": "^7.17.12",
-    "@babel/preset-env": "^7.17.10",
+    "@babel/preset-env": "^7.17.12",
     "babel-loader": "^8.2.5",
     "eslint": "^8.15.0",
     "eslint-config-google": "^0.14.0",
