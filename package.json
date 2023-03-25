@@ -51,7 +51,7 @@
     "eslint-plugin-jest": "^27.2.1",
     "husky": "^8.0.3",
     "jest": "^29.5.0",
-    "prettier": "^2.8.4",
+    "prettier": "^2.8.7",
     "rimraf": "^4.4.0",
     "terser-webpack-plugin": "^5.3.7",
     "webpack": "^5.76.3",
